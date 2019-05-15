@@ -16,7 +16,11 @@ pipeline {
 
         stage('Build') { 
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                sh 'mvn -B -DskipTests clean package'
+                script {
+                    def ttImage = docker.build("time-tracker-image:${env.BUILD_ID}")
+                    // ttImage.push()
+                }
             }
         }
     }
