@@ -18,7 +18,7 @@ pipeline {
             steps {
                 sh 'mvn -B -DskipTests clean package'
                 script {
-                    docker.withRegistry('http://127.0.0.1:8081/repository/Automat-it_docker/', 'nexus') {
+                    docker.withRegistry('http://127.0.0.1:8082/repository/Automat-it_docker/', 'nexus') {
                         def ttImage = docker.build("time-tracker-image:${env.BUILD_ID}")
                         ttImage.push()
                     }
